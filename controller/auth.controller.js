@@ -6,11 +6,11 @@ const nodemailer = require('nodemailer')
 
 const config = {
   service:"gmail",
-  host:"smtp.gmail.com",
-  port:587,
+  host:process.env.HOST,
+  port:process.env.PORT,
   secure:true,
   auth:{
-      user:"lamaesther5@gmail.com",
+      user:process.env.EMAIL,
       pass:process.env.PASS
   }
 };

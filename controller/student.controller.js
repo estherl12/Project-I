@@ -8,7 +8,7 @@ const {
     updateStudent
 } = require('../service/student.service')
 
-router.get("/",async function(req,res,next){
+const getStudents = async(req,res,next)=>{
     try{
         const data = await getAll();
         if(!data){
@@ -20,9 +20,9 @@ router.get("/",async function(req,res,next){
         console.error("Error while retreiving data",err.message);
         next(err);
     }
-});
+};
 
-router.post('/',async function(req,res,next){
+const createOne = async (req,res,next)=>{
     try {
         const student = await createStudent(req.body);
         if(!student){
@@ -38,22 +38,28 @@ router.post('/',async function(req,res,next){
         next(err);
         
     }
-})
-router.get('/:id',async function(req,res){
+}
+const getById = async (req,res)=>{
     const student = await getOne(req.params.id);
     if(!student){
         res.status(402);
         throw new Error("Not found");
     }
     res.status(201).send(student);
-});
-router.patch('/:id',async function(req,res){
+};
+
+const updateOne = async (req,res)=>{
     const data = await updateStudent(req.params.id,req.body);
     if(data){
         res.status(201).json({
             message:"updated successfully"
         })
     }
-});
+};
 
-module.exports = router
+module.exports = {
+    getStudents,
+    getById,
+    createOne,
+    updateOne
+}

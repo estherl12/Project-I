@@ -10,19 +10,17 @@ const config = {
         pass:process.env.PASS
     }
 }
-module.exports.send = async () => {
-    const data = {
-        from:"lamaesther5@gmail.com",
-        // to:"akashkhadka099@gmail.com",
-        to:"esther.7037807@gpkmc.edu.np",
-        subject:"Attend college regularly",
-        text:"as you were absent in today class. plz sent mails for absence"
-    }
+let data = {
+    from:"lamaesther5@gmail.com",
+    to:"esther.7037807@gpkmc.edu.np",
+    subject:"Attend college regularly",
+    text:"as you were absent in today class. plz sent mails for absence"
+}
+module.exports.sendCodeForRegister = async (data) => {
     const transporter = nodemailer.createTransport(config)
     transporter.sendMail(data,(err,info)=>{
         if(err){
             console.log(err);
-            return err;
         }else{
             return info.response
         }

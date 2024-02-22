@@ -11,7 +11,7 @@ async function query(sql,params){
         connectTimeout:60000
     });
     if(!connection){
-        console.log("Unable to Database connected ")
+        console.log("Unable to Database Connection ")
     }
     const [results] = await connection.execute(sql,params);
 
